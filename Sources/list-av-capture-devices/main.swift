@@ -4,20 +4,20 @@ import AVFoundation
 import Cocoa
 
 let session = AVCaptureDevice.DiscoverySession.init(
-  deviceTypes: [.builtInMicrophone, .externalUnknown], mediaType: nil, position: .unspecified)
+    deviceTypes: [.builtInMicrophone, .externalUnknown], mediaType: nil, position: .unspecified)
 
 let devices: [[String: Any]] = session.devices.map { device in
-  [
-    "deviceType": device.deviceType.rawValue,
-    "isConnected": device.isConnected,
-    "localizedName": device.localizedName,
-    "manufacturer": device.manufacturer,
-    "modelID": device.modelID,
-    "uniqueID": device.uniqueID,
-  ]
+    [
+        "deviceType": device.deviceType.rawValue,
+        "isConnected": device.isConnected,
+        "localizedName": device.localizedName,
+        "manufacturer": device.manufacturer,
+        "modelID": device.modelID,
+        "uniqueID": device.uniqueID,
+    ]
 }
 
 let devicesData = try JSONSerialization.data(
-  withJSONObject: devices, options: [.prettyPrinted, .sortedKeys])
+    withJSONObject: devices, options: [.prettyPrinted, .sortedKeys])
 
 print(String(data: devicesData, encoding: .utf8)!)
