@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "list-av-capture-devices",
     platforms: [
-        .macOS(.v10_15),
+        .macOS(.v13),
     ],
     targets: [
         .executableTarget(
