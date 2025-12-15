@@ -1,4 +1,5 @@
 // swift-tools-version:6.2
+// SPDX-License-Identifier: 0BSD
 
 import PackageDescription
 
