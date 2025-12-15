@@ -1,9 +1,26 @@
 # list-av-capture-devices
 
-`list-av-capture-devices` prints installed [capture devices](https://developer.apple.com/documentation/avfoundation/avcapturedevice).
+Lists all audio and video [capture devices](https://developer.apple.com/documentation/avfoundation/avcapturedevice) connected to Mac, outputting device information as JSON.
+
+## Usage
+
+Build and run from source:
 
 ```
-% list-av-capture-devices
+swift run
+```
+
+Or download a prebuilt binary from the [releases page](https://github.com/uasi/list-av-capture-devices/releases) and run it directly:
+
+```
+./list-av-capture-devices
+```
+
+The program takes no arguments.
+
+## Example
+
+```json
 [
   {
     "deviceType" : "AVCaptureDeviceTypeBuiltInMicrophone",
@@ -15,4 +32,3 @@
   }
 ]
 ```
-
