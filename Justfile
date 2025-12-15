@@ -12,3 +12,6 @@ format:
 
 lint:
     swift format lint --recursive Package.swift Sources
+
+test:
+    swift test

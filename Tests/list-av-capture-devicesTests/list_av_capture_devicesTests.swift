@@ -2,20 +2,11 @@ import XCTest
 import class Foundation.Bundle
 
 final class list_av_capture_devicesTests: XCTestCase {
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-
-        // Some of the APIs that we use below are available in macOS 10.13 and above.
-        guard #available(macOS 10.13, *) else {
-            return
-        }
-
-        let fooBinary = productsDirectory.appendingPathComponent("list-av-capture-devices")
+    func testProgramRuns() throws {
+        let executableURL = productsDirectory.appendingPathComponent("list-av-capture-devices")
 
         let process = Process()
-        process.executableURL = fooBinary
+        process.executableURL = executableURL
 
         let pipe = Pipe()
         process.standardOutput = pipe
@@ -26,22 +17,18 @@ final class list_av_capture_devicesTests: XCTestCase {
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
         let output = String(data: data, encoding: .utf8)
 
-        XCTAssertEqual(output, "Hello, world!\n")
+        // Verify the output is valid JSON and contains a devices array.
+        XCTAssertNotNil(output)
+        let outputData = output?.data(using: .utf8)
+        XCTAssertNotNil(outputData)
+        let json = try JSONSerialization.jsonObject(with: outputData!, options: [])
+        XCTAssertTrue(json is [Any])
     }
 
-    /// Returns path to the built products directory.
-    var productsDirectory: URL {
-      #if os(macOS)
+    private var productsDirectory: URL {
         for bundle in Bundle.allBundles where bundle.bundlePath.hasSuffix(".xctest") {
             return bundle.bundleURL.deletingLastPathComponent()
         }
         fatalError("couldn't find the products directory")
-      #else
-        return Bundle.main.bundleURL
-      #endif
     }
-
-    static var allTests = [
-        ("testExample", testExample),
-    ]
 }
