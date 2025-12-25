@@ -18,7 +18,7 @@ Or download a prebuilt binary from the [releases page](https://github.com/uasi/l
 
 The program takes no arguments.
 
-## Example
+## Example output
 
 ```json
 [
